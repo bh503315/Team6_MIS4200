@@ -26,5 +26,11 @@ namespace Team6_MIS4200.Controllers
 
             return View();
         }
+
+        public ActionResult CoreValues()
+        {
+            ViewBag.Message = "Core Value description page.";
+            return View();
+        }
     }
 }
