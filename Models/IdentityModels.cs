@@ -29,5 +29,7 @@ namespace Team6_MIS4200.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<Team6_MIS4200.Models.Employees> Employees { get; set; }
     }
 }
