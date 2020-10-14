@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -50,7 +51,9 @@ namespace Team6_MIS4200.Controllers
         {
             if (ModelState.IsValid)
             {
-                employees.ID = Guid.NewGuid();
+                Guid employeesID;
+                Guid.TryParse(User.Identity.GetUserId(), out employeesID);
+                employees.ID = employeesID;
                 db.Employees.Add(employees);
                 db.SaveChanges();
                 return RedirectToAction("Index");
