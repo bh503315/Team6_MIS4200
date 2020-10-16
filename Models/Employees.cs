@@ -33,7 +33,7 @@ namespace Team6_MIS4200.Models
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$",
             ErrorMessage = "Phone numbers must be in the format (xxx) xxx-xxxx or xxx-xxx-xxxx")]
-        public string Phone { get; set; }
+        public string PhoneNumber { get; set; }
 
         [Display(Name = "Office")]
         [Required(ErrorMessage = "Office Name Required")]
