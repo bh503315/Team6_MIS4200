@@ -37,6 +37,7 @@ namespace Team6_MIS4200.Controllers
         }
 
         // GET: Employees/Create
+        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +48,7 @@ namespace Team6_MIS4200.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        
         public ActionResult Create([Bind(Include = "ID,Email,firstName,lastName,PhoneNumber,Office,Position,hireDate,photo")] Employees employees)
         {
             if (ModelState.IsValid)
