@@ -7,6 +7,6 @@ namespace Team6_MIS4200.Models
 {
     public class Recognition
     {
-
+        public int ID { get; set; }
     }
 }
