@@ -7,6 +7,8 @@ namespace Team6_MIS4200.Models
 {
     public class Recognition
     {
+       
+        public Guid ID { get; set; }
         public int surveyID { get; set; }
 
         public string coreValue { get; set; }
