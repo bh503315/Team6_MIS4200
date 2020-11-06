@@ -18,11 +18,12 @@ namespace Team6_MIS4200.Controllers
         // GET: Recognitions
         public ActionResult Index()
         {
-            return View(db.Recognitions.ToList());
+            var recognitions = db.Recognitions.Include(r => r.Employees);
+            return View(recognitions.ToList());
         }
 
         // GET: Recognitions/Details/5
-        public ActionResult Details(Guid? id)
+        public ActionResult Details(int? id)
         {
             if (id == null)
             {
@@ -39,6 +40,7 @@ namespace Team6_MIS4200.Controllers
         // GET: Recognitions/Create
         public ActionResult Create()
         {
+            ViewBag.EmployeeID = new SelectList(db.Employees, "ID", "Email");
             return View();
         }
 
@@ -47,21 +49,21 @@ namespace Team6_MIS4200.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,surveyID,coreValue,reasoning")] Recognition recognition)
+        public ActionResult Create([Bind(Include = "surveyID,EmployeeID,coreValue,reasoning")] Recognition recognition)
         {
             if (ModelState.IsValid)
             {
-                recognition.ID = Guid.NewGuid();
                 db.Recognitions.Add(recognition);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.EmployeeID = new SelectList(db.Employees, "ID", "Email", recognition.EmployeeID);
             return View(recognition);
         }
 
         // GET: Recognitions/Edit/5
-        public ActionResult Edit(Guid? id)
+        public ActionResult Edit(int? id)
         {
             if (id == null)
             {
@@ -72,6 +74,7 @@ namespace Team6_MIS4200.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.EmployeeID = new SelectList(db.Employees, "ID", "Email", recognition.EmployeeID);
             return View(recognition);
         }
 
@@ -80,7 +83,7 @@ namespace Team6_MIS4200.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,surveyID,coreValue,reasoning")] Recognition recognition)
+        public ActionResult Edit([Bind(Include = "surveyID,EmployeeID,coreValue,reasoning")] Recognition recognition)
         {
             if (ModelState.IsValid)
             {
@@ -88,11 +91,12 @@ namespace Team6_MIS4200.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.EmployeeID = new SelectList(db.Employees, "ID", "Email", recognition.EmployeeID);
             return View(recognition);
         }
 
         // GET: Recognitions/Delete/5
-        public ActionResult Delete(Guid? id)
+        public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -109,7 +113,7 @@ namespace Team6_MIS4200.Controllers
         // POST: Recognitions/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(Guid id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Recognition recognition = db.Recognitions.Find(id);
             db.Recognitions.Remove(recognition);
