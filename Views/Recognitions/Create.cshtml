@@ -3,8 +3,13 @@
 @{
     ViewBag.Title = "Create";
 }
+<a class="btn btn-default" style=" float: right;
+        background-color: #4e3c69;
+        font-size: larger;
+        color: white;"
+   @Html.ActionLink("Core Value Descriptions", "CoreValues")</a>
+<h2>Nomination Survey</h2>
 
-<h2>Create</h2>
 
 
 @using (Html.BeginForm()) 
@@ -12,11 +17,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Recognition</h4>
+        <h4></h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.EmployeeID, "EmployeeID", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.EmployeeID, "Employee Email", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("EmployeeID", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.EmployeeID, "", new { @class = "text-danger" })
@@ -24,7 +29,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.coreValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.coreValue, "Core Value", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.coreValue, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.coreValue, "", new { @class = "text-danger" })
@@ -32,7 +37,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.reasoning, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.reasoning, "Reasoning", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.reasoning, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.reasoning, "", new { @class = "text-danger" })
@@ -47,9 +52,6 @@
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
