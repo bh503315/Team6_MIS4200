@@ -22,3 +22,19 @@ select,
 textarea {
     max-width: 280px;
 }
+.centric-logo{
+    max-height: 50px;
+    margin-top: 12px;
+}
+.navbar-inverse {
+    background-color: #000;
+    border-color: #ffffff;
+}
+    .navbar-inverse .navbar-brand:hover,
+    .navbar-inverse .navbar-brand:focus {
+        color: black;
+        background-color: transparent;
+    }
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+    }
