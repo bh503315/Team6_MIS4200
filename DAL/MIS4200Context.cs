@@ -15,6 +15,6 @@ namespace Team6_MIS4200.DAL
         }
         public DbSet<Employees> Employees { get; set; }
 
-        public System.Data.Entity.DbSet<Team6_MIS4200.Models.Recognition> Recognitions { get; set; }
+        public DbSet<Recognition> Recognition { get; set; }
     }
 }

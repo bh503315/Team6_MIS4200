@@ -18,7 +18,7 @@ namespace Team6_MIS4200.Controllers
         // GET: Recognitions
         public ActionResult Index()
         {
-            var recognitions = db.Recognitions.Include(r => r.Employees);
+            var recognitions = db.Recognition.Include(r => r.Employees);
             return View(recognitions.ToList());
         }
 
@@ -29,7 +29,7 @@ namespace Team6_MIS4200.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recognition recognition = db.Recognitions.Find(id);
+            Recognition recognition = db.Recognition.Find(id);
             if (recognition == null)
             {
                 return HttpNotFound();
@@ -53,7 +53,7 @@ namespace Team6_MIS4200.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Recognitions.Add(recognition);
+                db.Recognition.Add(recognition);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -69,7 +69,7 @@ namespace Team6_MIS4200.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recognition recognition = db.Recognitions.Find(id);
+            Recognition recognition = db.Recognition.Find(id);
             if (recognition == null)
             {
                 return HttpNotFound();
@@ -102,7 +102,7 @@ namespace Team6_MIS4200.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Recognition recognition = db.Recognitions.Find(id);
+            Recognition recognition = db.Recognition.Find(id);
             if (recognition == null)
             {
                 return HttpNotFound();
@@ -115,8 +115,8 @@ namespace Team6_MIS4200.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Recognition recognition = db.Recognitions.Find(id);
-            db.Recognitions.Remove(recognition);
+            Recognition recognition = db.Recognition.Find(id);
+            db.Recognition.Remove(recognition);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

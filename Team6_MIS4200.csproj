@@ -248,6 +248,11 @@
     <Content Include="Views\Employees\Details.cshtml" />
     <Content Include="Views\Employees\Edit.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\RecognitionsOLD\Create.cshtml" />
+    <Content Include="Views\RecognitionsOLD\Delete.cshtml" />
+    <Content Include="Views\RecognitionsOLD\Details.cshtml" />
+    <Content Include="Views\RecognitionsOLD\Edit.cshtml" />
+    <Content Include="Views\RecognitionsOLD\Index.cshtml" />
     <Content Include="Views\Recognitions\Create.cshtml" />
     <Content Include="Views\Recognitions\Delete.cshtml" />
     <Content Include="Views\Recognitions\Details.cshtml" />
