@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNet.Identity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -7,13 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Team6_MIS4200.DAL;
 using Team6_MIS4200.Models;
 
 namespace Team6_MIS4200.Controllers
 {
     public class EmployeesController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private MIS4200Context db = new MIS4200Context();
 
         // GET: Employees
         public ActionResult Index()
@@ -37,7 +37,6 @@ namespace Team6_MIS4200.Controllers
         }
 
         // GET: Employees/Create
-        [Authorize]
         public ActionResult Create()
         {
             return View();
@@ -48,14 +47,11 @@ namespace Team6_MIS4200.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        
         public ActionResult Create([Bind(Include = "ID,Email,firstName,lastName,PhoneNumber,Office,Position,hireDate,photo")] Employees employees)
         {
             if (ModelState.IsValid)
             {
-                Guid employeesID;
-                Guid.TryParse(User.Identity.GetUserId(), out employeesID);
-                employees.ID = employeesID;
+                employees.ID = Guid.NewGuid();
                 db.Employees.Add(employees);
                 db.SaveChanges();
                 return RedirectToAction("Index");

@@ -53,6 +53,8 @@ namespace Team6_MIS4200.Models
         [Display(Name = "Employee Profile Picture")]
         [Required]
         public string photo { get; set; }
+       
+        public ICollection<Recognition> recognition { get; set; }
 
     }
 }
