@@ -35,13 +35,11 @@ namespace Team6_MIS4200.Controllers
             }
             return View(recognition);
         }
-        
+
         // GET: Recognitions/Create
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.ID = new SelectList(db.Employees, "ID", "firstName");
-           
             return View();
         }
 
