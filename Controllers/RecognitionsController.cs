@@ -18,8 +18,7 @@ namespace Team6_MIS4200.Controllers
         // GET: Recognitions
         public ActionResult Index()
         {
-            var recognitions = db.Recognition.Include(r => r.Employees);
-            return View(recognitions.ToList());
+            return View(db.Recognition.ToList());
         }
 
         // GET: Recognitions/Details/5
@@ -36,11 +35,13 @@ namespace Team6_MIS4200.Controllers
             }
             return View(recognition);
         }
-
+        
         // GET: Recognitions/Create
+        [Authorize]
         public ActionResult Create()
         {
-            ViewBag.EmployeeID = new SelectList(db.Employees, "ID", "Email");
+            ViewBag.ID = new SelectList(db.Employees, "ID", "firstName");
+           
             return View();
         }
 
@@ -49,7 +50,7 @@ namespace Team6_MIS4200.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "surveyID,EmployeeID,coreValue,reasoning")] Recognition recognition)
+        public ActionResult Create([Bind(Include = "surveyID,award,recognizor,Nominee,recognizationDate")] Recognition recognition)
         {
             if (ModelState.IsValid)
             {
@@ -58,7 +59,6 @@ namespace Team6_MIS4200.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeID = new SelectList(db.Employees, "ID", "Email", recognition.EmployeeID);
             return View(recognition);
         }
 
@@ -74,7 +74,6 @@ namespace Team6_MIS4200.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeeID = new SelectList(db.Employees, "ID", "Email", recognition.EmployeeID);
             return View(recognition);
         }
 
@@ -83,7 +82,7 @@ namespace Team6_MIS4200.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "surveyID,EmployeeID,coreValue,reasoning")] Recognition recognition)
+        public ActionResult Edit([Bind(Include = "surveyID,award,recognizor,Nominee,recognizationDate")] Recognition recognition)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +90,6 @@ namespace Team6_MIS4200.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployeeID = new SelectList(db.Employees, "ID", "Email", recognition.EmployeeID);
             return View(recognition);
         }
 
