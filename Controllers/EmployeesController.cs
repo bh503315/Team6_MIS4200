@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Team6_MIS4200.DAL;
 using Team6_MIS4200.Models;
+using Microsoft.AspNet.Identity;
 
 namespace Team6_MIS4200.Controllers
 {
@@ -52,7 +53,9 @@ namespace Team6_MIS4200.Controllers
         {
             if (ModelState.IsValid)
             {
-                employees.ID = Guid.NewGuid();
+                Guid ID;
+                Guid.TryParse(User.Identity.GetUserId(), out ID);
+                employees.ID = ID;
                 db.Employees.Add(employees);
                 db.SaveChanges();
                 return RedirectToAction("Index");
