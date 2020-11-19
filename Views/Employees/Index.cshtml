@@ -4,10 +4,12 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Employee Index</h2>
+<h2>Index</h2>
 
-<table class="table table-striped table-bordered">
-        <thead class="thead-dark">  </thead>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Email)
@@ -63,7 +65,9 @@
             @Html.DisplayFor(modelItem => item.photo)
         </td>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) 
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
         </td>
     </tr>
 }
