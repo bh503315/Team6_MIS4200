@@ -25,7 +25,11 @@ namespace Team6_MIS4200.Models
         public Guid Nominee { get; set; }
         [Display(Name = "Date recognition given")]
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
         public DateTime recognizationDate { get; set; }
+
+     
         public enum CoreValue
         {
             Excellence = 1,
@@ -37,9 +41,11 @@ namespace Team6_MIS4200.Models
             Balanced = 7
         }
 
-
-        public virtual Employees Employees { get; set; }
-        
+        [ForeignKey("recognizor")]
+        public virtual Employees Nominator { get; set; }
+       
+        [ForeignKey("Nominee")]
+        public virtual Employees recognized { get; set; }
         
 
 

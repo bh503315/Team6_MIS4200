@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Team6_MIS4200.Models
 {
@@ -27,6 +28,8 @@ namespace Team6_MIS4200.Models
         [Required(ErrorMessage = "Employee Last Name is required")]
         [StringLength(20)]
         public string lastName { get; set; }
+
+        public string fullName { get { return lastName + ", " + firstName; } }
 
         [Display(Name = "Primary Phone")]
         [Required]
@@ -54,7 +57,11 @@ namespace Team6_MIS4200.Models
         [Required]
         public string photo { get; set; }
        
+        [ForeignKey("Nominee")]
         public ICollection<Recognition> recognition { get; set; }
+
+        [ForeignKey("recognizor")]
+        public ICollection<Recognition> nominations { get; set; }
 
     }
 }
