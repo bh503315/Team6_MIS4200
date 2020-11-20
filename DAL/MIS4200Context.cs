@@ -21,7 +21,9 @@ namespace Team6_MIS4200.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention> ();
+            base.OnModelCreating(modelBuilder);
         }
+
     }
 
 }
